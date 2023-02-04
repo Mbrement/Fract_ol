@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   algo_core.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 16:38:55 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/04 12:05:28 by mbrement         ###   ########lyon.fr   */
+/*   Created: 2023/02/04 13:20:29 by mbrement          #+#    #+#             */
+/*   Updated: 2023/02/04 16:19:45 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../fract_ol.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	algo_init(int value, int fractal_nb)
 {
-	size_t	i;
-	char	*swap;
-	char	*conv;
+	void	*test;
 
-	conv = dst;
-	swap = (char *)src;
-	i = len;
-	if (src < dst)
-		while (i-- > 0)
-			conv[i] = swap[i];
-	else
-		ft_memcpy (dst, src, len);
-	return (dst);
+	(void) value;
+	(void) fractal_nb;
+	test = mlx_init();
+	if (test == 0)
+		ft_error(4);
+	if (mlx_new_window(test, 2500, 1500, "fract_ol") == 0)
+		ft_error(4);
 }

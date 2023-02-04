@@ -6,12 +6,11 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 16:28:24 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/03 14:08:46 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/04 12:05:19 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 void	ft_bzero(void *s, size_t n)
 {
