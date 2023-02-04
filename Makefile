@@ -8,7 +8,7 @@ DIR_OBJS	=	./
 
 DIR_SRCS	=	./
 
-DIR_MLX		=	Mlx/
+DIR_MLX		=	Mini_libx/
 
 DIR_LIBFT	=	Tools/Libft/
 
