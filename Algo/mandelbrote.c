@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol_core.c                                    :+:      :+:    :+:   */
+/*   mandelbrote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 19:05:49 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/05 12:41:22 by mbrement         ###   ########lyon.fr   */
+/*   Created: 2023/02/05 14:19:58 by mbrement          #+#    #+#             */
+/*   Updated: 2023/02/05 14:36:16 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Tools/Libft/libft.h"
-#include "fract_ol.h"
+#include "../fract_ol.h"
 
-int	main(int arg_c, char **arg_v)
+void	algo_mandelbrote(struct s_fract *value)
 {
-	int	value;
-	int	fractal_nb;
-
-	fractal_nb = parser(arg_c, arg_v);
-	value = ft_atoi(arg_v[2]);
-	algo_init(value, fractal_nb);
-	return (0);
+	(void) value;
+	write (1, "a", 1);
 }

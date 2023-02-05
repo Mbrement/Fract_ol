@@ -6,21 +6,41 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:20:29 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/04 16:19:45 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/05 15:06:40 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fract_ol.h"
 
+int i = 0;
+
+int	loop(void *fractal)
+{
+	struct s_fract	*val;	
+
+	val = fractal;
+	if (val->fractal_nb == 1)
+		algo_julia(val);
+	else if (val->fractal_nb == 2)
+		algo_mandelbrote(val);
+	i++;
+	if (i >= 250000)
+		mlx_loop_end(val->mlx);
+	return (0);
+}
+
 void	algo_init(int value, int fractal_nb)
 {
-	void	*test;
+	struct s_fract	fractal;
 
-	(void) value;
-	(void) fractal_nb;
-	test = mlx_init();
-	if (test == 0)
+	fractal.value = value;
+	fractal.fractal_nb = fractal_nb;
+	fractal.mlx = mlx_init();
+	if (fractal.mlx == 0)
 		ft_error(4);
-	if (mlx_new_window(test, 2500, 1500, "fract_ol") == 0)
+	fractal.window = mlx_new_window(fractal.mlx, 2500, 1500, "fract_ol");
+	if (fractal.window == 0)
 		ft_error(4);
+	mlx_loop_hook(fractal.mlx, loop, &fractal);
+	mlx_loop(fractal.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:07:57 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/04 13:14:27 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/05 12:43:12 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_error(int error_code)
 	if (error_code == 2)
 		write (fd, "wrong usage : only 'julia' or 'mandelbrote'\n", 44);
 	if (error_code == 3)
-		write (fd, "wrong usage : int in second parameter'\n", 39);
+		write (fd, "wrong usage : int in second parameter\n", 38);
+	if (error_code == 4)
+		write (fd, "mlx couldn't start\n", 19);
 	exit (1);
 }
