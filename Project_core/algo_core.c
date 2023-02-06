@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:20:29 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/06 14:26:22 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/06 15:59:00 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,20 @@ int	loop(void *fractal)
 	else if (val->fractal_nb == 2)
 		algo_mandelbrote(val);
 	i++;
-	if (i >= 100000)
+	if (i >= 10000)
 		mlx_loop_end(val->mlx);
 	return (0);
 }
 
 static struct s_fract	fract_compleat(struct s_fract val)
 {
-	val.math.x = (float)val.value / 1000;
-	val.math.y = (float)val.value / 1000;
-	val.math.x_i = 0.655;
-	val.math.y_i = 0.655;
+	_Complex float i;
+
+	i = 0.655;
+	val.math.x = 0.5 + (float)val.value / 1000;
+	val.math.y = 0.5 + (float)val.value / 1000;
+	val.math.x_i = i;
+	val.math.y_i = i;
 	return (val);
 }
 
