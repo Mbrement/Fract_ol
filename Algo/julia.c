@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 14:19:22 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/05 16:06:48 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/06 14:26:52 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,41 @@
 
 #include <stdio.h>
 
+#include <math.h>
 
-static float	*math(int value)
+t_fract	*math(t_fract *value)
 {
 	int		i;
-	float	z;
-	float	*tab;
-	float	tmp;
+	float	r;
+	float	xtmp;
 
+	r = 3.14;
 	i = 0;
-	z = 0;
-	tmp = value;
-	tab = malloc(sizeof(float) * 25);
-	while (i < 25)
+		//printf("org %f ___ %f\n", value->math.y, value->math.x);
+	while ((value->math.x * value->math.x + value->math.y  * value->math.x < r ) && i < 25000)
 	{
-		tab[i] = (z * z + (tmp / 100));
-		z = tab[i];
+		xtmp = (value->math.x *  value->math.x * 0.1 - value->math.y * value->math.y * 0.1);
+		value->math.y = 2 *(value->math.x *value->math.y * 1) + value->math.y_i;
+		value->math.x = xtmp + value->math.y_i;
 		i++;
+	mlx_pixel_put(value->mlx, value->window, value->math.x*250 + 1250, value->math.y*150 + 750, 0xfffffff);
 	}
-	i = 0;
-	while (i < 25)
-	{
-		printf("%f\n", tab[i]);
-		i++;
-	}
-	exit(0);
-	return (tab);
+	//printf("%f ___ %f\n", value->math.y, value->math.x);
+	return (value);
 }
 
 void	algo_julia(struct s_fract *value)
 {
-	int		i;
-	float	*tab;
+	// int		i;
+	// // float	*tab;
 
-	i = 0;
-	tab = math(value->value);
-	while (i < 2500)
-	{
-		mlx_pixel_put(value->mlx, value->window, 2500 - i, i, 0xff0000ff);
-		mlx_pixel_put(value->mlx, value->window, i, i, 0xff0000ff);
-		i++;
-	}
-	free(tab);
+	// i = 0;
+	value = math(value);
+	// while (i < 2500)
+	// {
+	// 	mlx_pixel_put(value->mlx, value->window, 2500 - i, i, 0xfffffff);
+	// 	mlx_pixel_put(value->mlx, value->window, i, i, 0xff0000ff);
+	// 	i++;
+	// }
+	// free(tab);
 }

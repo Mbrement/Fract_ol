@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:34:08 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/05 14:39:04 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/06 11:40:11 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,19 @@
 # include <stdlib.h>
 # include "./Tools/Libft/libft.h"
 
+typedef struct s_fract_math{
+	float			y;
+	_Complex float	y_i;
+	float			x;
+	_Complex float	x_i;
+}	t_fract_math;
+
 typedef struct s_fract{
-	int		fractal_nb;
-	int		value;
-	void	*mlx;
-	void	*window;
+	int				fractal_nb;
+	int				value;
+	void			*mlx;
+	void			*window;
+	t_fract_math	math;
 }	t_fract;
 
 //PROJECT_CORE

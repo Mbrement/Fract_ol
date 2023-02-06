@@ -47,7 +47,7 @@ ${addprefix ${DIR_MLX}, ${LIBMLX}}	:
 
 
 
-${DIR_OBJS}%.o	:	${DIR_SRCS}%.c Makefile so_long.h ./libft/headers/ft_printf.h ./libft/headers/get_next_line_bonus.h ./libft/headers/libft.h | ${DIR_OBJS}
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c Makefile | ${DIR_OBJS}
 					${CC} ${CFLAGS} -I ${addprefix ${DIR_LIBFT}, headers/} -I ${DIR_MLX} -I. -c $< -o $@
 
 ${DIR_OBJS}		:
