@@ -18,8 +18,8 @@ SRCS	=	Error/error.c \
 			Parser/parser_core.c \
 			Project_core/algo_core.c\
 			fract_ol_core.c\
-			Algo/julia.c \
-			Algo/mandelbrote.c\
+			Fractal/julia.c \
+			Fractal/mandelbrote.c\
 
 
 OBJS	=	${SRCS:%.c=${DIR_OBJS}%.o}
