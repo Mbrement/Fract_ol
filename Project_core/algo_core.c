@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:20:29 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/10 15:16:59 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/12 17:42:03 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 #include <stdio.h>
 
-int i = 0;
 
 int	loop(void *fractal)
 {
@@ -25,25 +24,20 @@ int	loop(void *fractal)
 		algo_julia(val);
 	else if (val->fractal_nb == 2)
 		algo_mandelbrote(val);
-	i++;
-	if (i >= 10000)
-	{
-		// printf("%f %f", val->math.x, val->math.y);
-		mlx_loop_end(val->mlx);
-	}
 	return (0);
 }
 
-static struct s_fract	fract_compleat(struct s_fract val)
+static struct s_fract	fract_compleat_julia(struct s_fract *val)
 {
-	float	i;
-
-	i = 0.655;
-	val.x.x = 0.5 + ((float)val.value/1000);
-	val.y.x = -0.5 - ((float)val.value/1000);
-	val.x.y = i;
-	val.y.y = -1 * i;
-	return (val);
+	val->x.x = -2;
+	val->x.y = -2;
+	val->y.x = -0.8;
+	val->y.y = 0.156;
+	val->zoom = 0;
+	val->off_y = 750;
+	val->off_x = 1250;
+	val->color = 0xffffffff;
+	return (*val);
 }
 
 void	algo_init(int value, int fractal_nb)
@@ -52,7 +46,8 @@ void	algo_init(int value, int fractal_nb)
 
 	fractal.value = value;
 	fractal.fractal_nb = fractal_nb;
-	fractal = fract_compleat(fractal);
+	if (fractal_nb == 1)
+		fractal = fract_compleat_julia(&fractal);
 	fractal.mlx = mlx_init();
 	if (fractal.mlx == 0)
 		ft_error(4);
@@ -60,5 +55,6 @@ void	algo_init(int value, int fractal_nb)
 	if (fractal.window == 0)
 		ft_error(4);
 	mlx_loop_hook(fractal.mlx, loop, &fractal);
+	mlx_key_hook(fractal.window, *hook, &fractal);
 	mlx_loop(fractal.mlx);
 }

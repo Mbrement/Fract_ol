@@ -6,11 +6,24 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:07:57 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/05 12:43:12 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/12 14:13:52 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fract_ol.h"
+
+void	end_of_prog(t_fract *value)
+{
+	if (value->mlx)
+	{
+		if (value->window)
+			mlx_destroy_window(value->mlx, value->window);
+		mlx_destroy_display(value->mlx);
+		free(value->mlx);
+	}
+	exit(0);
+}
+
 
 void	ft_error(int error_code)
 {

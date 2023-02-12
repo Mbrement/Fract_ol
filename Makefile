@@ -17,16 +17,18 @@ HEAD	=	fract_ol.h
 SRCS	=	Error/error.c \
 			Parser/parser_core.c \
 			Project_core/algo_core.c\
+			Project_core/hook.c\
 			fract_ol_core.c\
 			Fractal/julia.c \
 			Fractal/mandelbrote.c\
-
+			Fractal/math.c\
 
 OBJS	=	${SRCS:%.c=${DIR_OBJS}%.o}
 
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror 
+#-fsanitize=address -g3
 
 
 RM		=	rm -rf
