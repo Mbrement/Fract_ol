@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:20:29 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/12 17:42:03 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/13 14:16:24 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	loop(void *fractal)
 
 static struct s_fract	fract_compleat_julia(struct s_fract *val)
 {
-	val->x.x = -2;
-	val->x.y = -2;
-	val->y.x = -0.8;
-	val->y.y = 0.156;
+	val->x.x = 0;
+	val->x.y = 0;
+	val->y.x = 0.3;
+	val->y.y = 0.5;
 	val->zoom = 0;
 	val->off_y = 750;
 	val->off_x = 1250;

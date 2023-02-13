@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 14:51:18 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/12 17:48:12 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/13 13:31:22 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	hook(int key, t_fract *fract)
 		end_of_prog(fract); 
 		mlx_loop_end(fract->mlx);
 	}	
-	else if (key == 65451&& fract->zoom < 1490)
+	else if (key == 65451 && fract->zoom < 1490)
 		fract->zoom = fract->zoom + 10;
 	else if (key == 65453 && fract->zoom >= 10)
 		fract->zoom = fract->zoom - 10;

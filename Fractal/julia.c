@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 14:19:22 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/12 17:53:09 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/13 18:04:35 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ void	algo_julia(struct s_fract *value)
 {
 	t_data		img;
 	t_complex 	z;
-	int			i;
-	int 		j;
+	float		i;
+	float 		j;
 	int			itr;
+	t_complex	w;
 
 
 	itr = 0;
@@ -69,21 +70,30 @@ void	algo_julia(struct s_fract *value)
 	value->data = img;
 	//printf("org x = %f, y = %f", value->x.x, value->x.y);
 	i = -1;
+	z = value->x;
+	
 	while (++i < 2500)
 	{
 		j = -1;
+		w.x =i/2500;
 		while (++j < 1500)
 		{
-			z.y = value->zoom * -1 / 2500;
-			z.x = value->zoom * -1 / 1500;
+				w.y = j/1500;
 			while (++itr < 300 && module_cplx_pow2(z) < 4)
-				z = algo_cplx(1, mult_cplx(z, z), 1, z);
-		if (z.x + value->off_x < 2500 && z.y + value->off_y < 1500 && z.x + value->off_x > 0 && z.y + value->off_y > 0)
-			my_mlx_pixel_put(&value->data, z.x + value->off_x, z.y + value->off_y, value->color);
+			{
+				z = add_complex(mult_cplx(z,z), w);
+				if (i + value->off_x < 2500 && j + value->off_y < 1500 && i + value->off_x > 0 && j + value->off_y > 0)
+					my_mlx_pixel_put(&value->data, i + value->off_x, j + value->off_y, value->color);
+			}
+		//exit(0);
 		}
+		itr = 0;
+		z = value->x;
 	}
+			//  printf(" end Z x = %f, y = %f\n", z.x, z.y);
+		// printf("%f, %f\n", j, i);
+	// exit(0);
 	mlx_put_image_to_window(value->mlx, value->window, img.img, 0, 0);
-	// printf(" end Z x = %f, y = %f\n", z.x, z.y);
 	// printf(" end x = %f, y = %f\n", value->x.x, value->x.y);
 	mlx_destroy_image(value->mlx, value->data.img);
 }
