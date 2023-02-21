@@ -6,19 +6,19 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:34:08 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/21 17:10:11 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 09:59:01 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACT_OL_H
 # define FRACT_OL_H
 
-# include "./Mini_libx/mlx.h"
+# include "../Mini_libx/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "./Tools/Libft/libft.h"
+# include "../Tools/Libft/libft.h"
 
 # define WIN_W 1500
 # define WIN_H 750
@@ -53,7 +53,6 @@ typedef struct s_fract{
 	struct s_complex	x_o;
 	struct s_complex	y;
 	struct s_data		*data;
-	struct s_data		*data_tmp;
 }		t_fract;
 
 //PROJECT_CORE
@@ -64,8 +63,6 @@ unsigned int	ft_color(int color, struct s_fract *value);
 void			my_mlx_pixel_put(t_data *data, int x, int y,
 					unsigned int color);
 int				loop(void *fractal);
-void 			ft_swap(t_fract *v);
-
 
 //MATH
 void			algo_julia(struct s_fract *value);
@@ -74,12 +71,14 @@ t_complex		add_complex(t_complex a, t_complex b);
 t_complex		algo_cplx(float l, t_complex a, float m, t_complex b);
 t_complex		mult_cplx(t_complex a, t_complex b);
 float			module_cplx_pow2(t_complex z);
+struct s_fract	fract_compleat_smandelbrot(struct s_fract *val);
+void			algo_smandelbrot(struct s_fract *value);
 
 //PARSER
 int				parser(int arg_c, char **arg_v);
 
 //ERR0R
 void			ft_error(int error_code);
-void			end_of_prog(t_fract *value);
+int				end_of_prog(t_fract *value);
 
 #endif

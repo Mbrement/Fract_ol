@@ -1,4 +1,4 @@
-NAME		=	fractol
+NAME		=	../fractol_bonus
 
 LIBFT		=	libft.a
 
@@ -8,9 +8,9 @@ DIR_OBJS	=	./
 
 DIR_SRCS	=	./
 
-DIR_MLX		=	Mini_libx/
+DIR_MLX		=	../Mini_libx/
 
-DIR_LIBFT	=	Tools/Libft/
+DIR_LIBFT	=	../Tools/Libft/
 
 HEAD	=	fract_ol.h
 
@@ -23,12 +23,14 @@ SRCS	=	Error/error.c \
 			Fractal/julia.c \
 			Fractal/mandelbrot.c\
 			Fractal/math.c\
+			Fractal/smandelbrot.c\
 
 OBJS	=	${SRCS:%.c=${DIR_OBJS}%.o}
 
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -O2 -fsanitize=address -g3
+CFLAGS	=	-Wall -Wextra -Werror -O2 -ffast-math -march=native
+# -fsanitize=address -g3
 
 
 RM		=	rm -rf
@@ -49,7 +51,7 @@ ${addprefix ${DIR_MLX}, ${LIBMLX}}	:
 
 
 
-${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEAD} | ${DIR_OBJS}
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c Makefile ${HEAD} | ${DIR_OBJS}
 					${CC} ${CFLAGS} -I ${addprefix ${DIR_LIBFT}, headers/} -I ${DIR_MLX} -I. -c $< -o $@
 
 ${DIR_OBJS}		:
@@ -66,22 +68,11 @@ clean			:	fclean_lib
 fclean			:	clean
 					${RM} ${NAME}
 
-fclean_all		:	fclean fclean_lib fclean_bonus
-, ${LIBMLX}}	:
-			make ${LIBMLX} -C ${DIR_MLX}
-
+fclean_all		:	fclean fclean_lib
 
 re				:	fclean
 					${MAKE} all
 normy:
 	norminette $(SRCS)
 
-bonus			: 
-					make -C ./Bonus
-clean_bonus		: 
-					make clean -C ./Bonus
-fclean_bonus		: 
-					make clean -C ./Bonus
-					make fclean -C ./Bonus
-
-.PHONY:	all clean fclean re fclean_lib fclean_all normy bonus clean_bonus fclean_bonus
+.PHONY:	all clean fclean re fclean_lib fclean_all normy

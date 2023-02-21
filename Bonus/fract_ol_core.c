@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_core.c                                      :+:      :+:    :+:   */
+/*   fract_ol_core.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 22:01:02 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/17 14:09:59 by mbrement         ###   ########lyon.fr   */
+/*   Created: 2023/02/03 19:05:49 by mbrement          #+#    #+#             */
+/*   Updated: 2023/02/20 02:55:37 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fract_ol.h"
+#include "fract_ol.h"
 
-int	parser(int arg_c, char **arg_v)
+int	main(int arg_c, char **arg_v)
 {
-	if (arg_c != 3)
-		ft_error(1);
-	if (ft_strnstr(arg_v[1], "julia", 5) && arg_v[1][5] == '\0')
-		return (1);
-	else if (ft_strnstr(arg_v[1], "mandelbrot", 10) && arg_v[1][10] == '\0')
-		return (2);
-	else
-		ft_error(2);
+	int	value;
+	int	fractal_nb;
+
+	fractal_nb = parser(arg_c, arg_v);
+	value = ft_atoi(arg_v[2]);
+	algo_init(value, fractal_nb);
 	return (0);
 }
