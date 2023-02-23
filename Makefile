@@ -28,7 +28,8 @@ OBJS	=	${SRCS:%.c=${DIR_OBJS}%.o}
 
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -O2 -fsanitize=address -g3
+CFLAGS	=	-Wall -Wextra -Werror 
+#-O3 -g -pg #-fsanitize=address -g3
 
 
 RM		=	rm -rf
@@ -63,13 +64,8 @@ fclean_lib		:
 clean			:	fclean_lib
 					${RM} ${OBJS}
 
-fclean			:	clean
+fclean			:	clean fclean_bonus fclean_lib
 					${RM} ${NAME}
-
-fclean_all		:	fclean fclean_lib fclean_bonus
-, ${LIBMLX}}	:
-			make ${LIBMLX} -C ${DIR_MLX}
-
 
 re				:	fclean
 					${MAKE} all

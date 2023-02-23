@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:07:57 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/21 19:02:00 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/23 12:55:56 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ void	end_of_prog(t_fract *value)
 {
 	if (value->mlx)
 	{
+		mlx_destroy_image(value->mlx, value->data->img);
+		free(value->data);
 		if (value->window)
 			mlx_destroy_window(value->mlx, value->window);
 		mlx_destroy_display(value->mlx);
 		free(value->mlx);
-		mlx_destroy_image(value->mlx, value->data->img);
-		// mlx_destroy_image(value->mlx, value->data_tmp->img);
-		free(value->data);
-		// free(value->data_tmp);
 	}
+	exit(0);
+}
+
+int	on_destroy(struct s_fract *fractal)
+{
+	end_of_prog(fractal);
 	exit(0);
 }
 

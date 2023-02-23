@@ -29,8 +29,8 @@ OBJS	=	${SRCS:%.c=${DIR_OBJS}%.o}
 
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -O2 -ffast-math -march=native
-# -fsanitize=address -g3
+CFLAGS	=	-Wall -Wextra -Werror -O2 -ffast-math -march=native 
+#-fsanitize=address -g3
 
 
 RM		=	rm -rf

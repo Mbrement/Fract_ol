@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 04:54:38 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/20 09:57:06 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/22 06:20:59 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ struct s_fract	fract_compleat_smandelbrot(struct s_fract *val)
 	val->off_y_o = val->off_y;
 	val->off_y_o = val->off_x;
 	val->zoom_o = val->zoom - 0.0001;
+	init_img(val);
 	return (*val);
 }
 
@@ -45,12 +46,7 @@ t_complex	ft_smand(t_fract *fract)
 void	algo_smandelbrot(struct s_fract *v)
 {
 	int			c[3];	
-	t_data		img;
 
-	img.img = mlx_new_image(v->mlx, WIN_W, WIN_H);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-			&img.line_length, &img.endian);
-	v->data = &img;
 	c[0] = -1;
 	while (++c[0] < WIN_H)
 	{
@@ -61,11 +57,10 @@ void	algo_smandelbrot(struct s_fract *v)
 			c[2] = -1;
 			v->y.x = (((float)c[1] / WIN_W) * 3.0f - 2.0f) * v->zoom + v->off_x;
 			while (++c[2] < 128 && module_cplx_pow2(v->x) < 4)
-				v->x = algo_cplx(1, ft_smand(v), 1, v->y);
+				v->x = algo_cplx(ft_smand(v), v->y);
 			v->x = v->x_o;
 			my_mlx_pixel_put(v->data, c[1], c[0], ft_color(c[2], v));
 		}
 	}
 	mlx_put_image_to_window(v->mlx, v->window, v->data->img, 0, 0);
-	mlx_destroy_image(v->mlx, v->data->img);
 }

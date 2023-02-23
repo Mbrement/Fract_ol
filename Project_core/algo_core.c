@@ -6,26 +6,11 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:20:29 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/21 19:01:38 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/23 12:55:17 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fract_ol.h"
-
-int	on_destroy(struct s_fract *fractal)
-{
-	end_of_prog(fractal);
-	exit(0);
-}
-
-void ft_swap(t_fract *v)
-{
-	t_data	*d;
-
-	d = v->data;
-	v->data_tmp = v->data;
-	v->data = d;
-}
 
 int	loop(void *fractal)
 {
@@ -55,14 +40,6 @@ void	init_img(t_fract *v)
 	i->addr = mlx_get_data_addr(i->img, &i->bits_per_pixel,
 			&i->line_length, &i->endian);
 	v->data = i;
-	// i = malloc(sizeof(t_data));
-	// i->bits_per_pixel = 0;
-	// i->line_length = 0;
-	// i->endian = 0;
-	// i->img = mlx_new_image(v->mlx, WIN_W, WIN_H);
-	// i->addr = mlx_get_data_addr(i->img, &i->bits_per_pixel,
-	// 		&i->line_length, &i->endian);
-	// v->data_tmp = i;
 }
 
 static struct s_fract	fract_compleat_julia(struct s_fract *val)
@@ -99,6 +76,7 @@ static struct s_fract	fract_compleat_mandelbrot(struct s_fract *val)
 	val->off_y_o = val->off_y;
 	val->off_y_o = val->off_x;
 	val->zoom_o = val->zoom - 0.0001;
+	init_img(val);
 	return (*val);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:34:08 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/20 09:59:01 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/22 06:15:43 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,13 @@ unsigned int	ft_color(int color, struct s_fract *value);
 void			my_mlx_pixel_put(t_data *data, int x, int y,
 					unsigned int color);
 int				loop(void *fractal);
+void			init_img(t_fract *v);
 
 //MATH
 void			algo_julia(struct s_fract *value);
 void			algo_mandelbrot(struct s_fract *value);
 t_complex		add_complex(t_complex a, t_complex b);
-t_complex		algo_cplx(float l, t_complex a, float m, t_complex b);
+t_complex		algo_cplx(t_complex a, t_complex b);
 t_complex		mult_cplx(t_complex a, t_complex b);
 float			module_cplx_pow2(t_complex z);
 struct s_fract	fract_compleat_smandelbrot(struct s_fract *val);

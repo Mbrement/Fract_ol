@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 14:51:18 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/21 08:36:01 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/23 12:56:18 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,25 +79,12 @@ int	hook(int key, t_fract *fract)
 	return (0);
 }
 
-#include <stdio.h>
-
 int	hook_mouse(int key, int x, int y, t_fract *fract)
 {
-		printf("O = %f | %f\n", fract->off_x, fract->off_y);
 	if (key == 4)
-	{
-		// fract->off_x = (((float)WIN_H/2) - (((float)WIN_H-x)/2))/1000;
-		fract->off_y = (((float)WIN_W/2) - (((float)WIN_W-y)/2))/1000;
 		fract->zoom = fract->zoom - fract->zoom / 10;
-		printf("- = %f | %f\n", fract->off_x, fract->off_y);
-	}
 	else if (key == 5)
-	{
-		// fract->off_x = (((float)WIN_H/2) - ((float)WIN_H/2))/1000;
-		fract->off_y = (((float)WIN_W/2) - ((float)WIN_W/2))/1000;
 		fract->zoom = fract->zoom + fract->zoom / 10;
-		printf("+ = %f | %f\n", fract->off_x, fract->off_y);
-	}
 	if (fract->mouse)
 	{
 		if (fract->fractal_nb == 1)

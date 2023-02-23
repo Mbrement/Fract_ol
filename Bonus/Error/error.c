@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 22:07:57 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/20 08:48:01 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/22 06:19:22 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	end_of_prog(t_fract *value)
 {
 	if (value->mlx)
 	{
+		mlx_destroy_image(value->mlx, value->data->img);
+		free(value->data);
 		if (value->window)
 			mlx_destroy_window(value->mlx, value->window);
 		mlx_destroy_display(value->mlx);
