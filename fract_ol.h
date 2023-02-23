@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:34:08 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/23 12:55:42 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/23 13:23:09 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_fract{
 	struct s_complex	x_o;
 	struct s_complex	y;
 	struct s_data		*data;
-	struct s_data		*data_tmp;
 }		t_fract;
 
 //PROJECT_CORE

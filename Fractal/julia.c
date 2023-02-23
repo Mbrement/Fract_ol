@@ -6,7 +6,7 @@
 /*   By: mbrement <mbrement@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 14:19:22 by mbrement          #+#    #+#             */
-/*   Updated: 2023/02/22 08:27:20 by mbrement         ###   ########lyon.fr   */
+/*   Updated: 2023/02/23 13:21:17 by mbrement         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	algo_julia(struct s_fract *v)
 			v->x.x = (((float)x / WIN_W) * 3.0f - 2.0f) * v->zoom + v->off_x;
 			v->x.y = (((float)y / WIN_H) * 2.5f - 1.25f) * v->zoom + v->off_y;
 			while (++itr < 128 && module_cplx_pow2(v->x) < 4.0)
-			{
-				mult_cplx2(&v->x);
-				v->x = algo_cplx(v->x, v->y);
-			}
+				v->x = algo_cplx(mult_cplx(v->x, v->x), v->y);
 			my_mlx_pixel_put(v->data, x, y, ft_color(itr, v));
 		}
 	}
